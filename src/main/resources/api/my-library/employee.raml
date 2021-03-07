@@ -1,0 +1,22 @@
+#%RAML 1.0 Library
+types:
+  employeeData:
+    type: object
+    discriminatorValue: employee # override default
+    properties:
+      id: 
+        type: string
+        example: "A007"
+      first_name:
+        type: string
+        example: "Jan"
+      last_name:
+        type: string
+        example: "Doe"
+  employee: 
+    type: object
+    properties:
+      employee: employeeData
+  employeeRes:
+    type: string
+    example: "Jan Doe was created successfully. (Employee ID : A007)"

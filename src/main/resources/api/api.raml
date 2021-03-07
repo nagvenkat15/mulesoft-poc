@@ -1,0 +1,45 @@
+#%RAML 1.0
+title: mulesoft-poc
+version: 1.0
+uses:
+  myEmpLibrary: my-library/employee.raml
+  myList:  my-library/other.raml
+/employee:
+  post: 
+    description: "Create an employee"
+    body: 
+      application/json: 
+        type: myEmpLibrary.employee
+    responses: 
+      201: 
+        body: 
+          application/json:
+            type: myEmpLibrary.employeeRes
+/{number}:
+  uriParameters:
+    number:
+      type: myList.num
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: myList.list
+/camelCase:
+  get:
+    queryParameters:
+      value:
+        type: myList.value
+    responses:
+      200:
+        body:
+          application/json:
+            type: myList.camelCase
+/dataweave:
+  get:
+    responses:
+     200:
+      body:
+        application/json:
+          type: myEmpLibrary.employeeRes
+     
